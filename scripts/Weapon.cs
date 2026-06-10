@@ -9,6 +9,8 @@ public partial class Weapon : Node2D
 	int _ammo = 10;
 	int _maxAmmo = 10;
 	float _fireRate = 1.0f;
+	[Export]
+	PackedScene _projectile;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -27,6 +29,10 @@ public partial class Weapon : Node2D
 		// 2. Calculate the angle pointing toward the mouse
 		float angleToMouse = GlobalPosition.AngleToPoint(mousePos);
 		//spawn bullet
+		Node2D spawnedProjectile = _projectile.Instantiate<Node2D>();
+		spawnedProjectile.Position = GlobalPosition;
+		spawnedProjectile.RotationDegrees = angleToMouse;
+		AddChild(spawnedProjectile);
 		//passe direction to bullet
 		GD.Print("Fired");
 		

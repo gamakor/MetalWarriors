@@ -60,10 +60,9 @@ public partial class PlayerCharacter :CharacterBody2D , IPlayerCharacter
 					//play landing animation
 					SetMovementState(MovementState.Landing);
 					break;
-				} 
-				
+				}
+
 				velocity.X = Direction * Speed;
-				if (IsOnFloor())
 				{
 					//set velocity to jump
 					velocity = Velocity;

@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d4lvxwwolngqq" path="res://assets/sprites/Nitro/nitro_Jump.png" id="4_863sn"]
 [ext_resource type="Texture2D" uid="uid://cltohy13xb7bo" path="res://assets/sprites/Nitro/Nitro_Landing_.png" id="5_hmr4h"]
 [ext_resource type="Script" uid="uid://b5u8wake8y1dq" path="res://scripts/Weapon.cs" id="6_ugl5i"]
+[ext_resource type="PackedScene" uid="uid://d1sbw8t0633ee" path="res://scences/projectile.tscn" id="7_av6hx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ohysr"]
 atlas = ExtResource("2_hlyld")
@@ -220,3 +221,4 @@ shape = SubResource("RectangleShape2D_2dk2n")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=928276180]
 sprite_frames = SubResource("SpriteFrames_av6hx")
 script = ExtResource("6_ugl5i")
+_projectile = ExtResource("7_av6hx")
