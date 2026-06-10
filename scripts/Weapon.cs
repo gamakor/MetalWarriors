@@ -30,9 +30,10 @@ public partial class Weapon : Node2D
 		float angleToMouse = GlobalPosition.AngleToPoint(mousePos);
 		//spawn bullet
 		Node2D spawnedProjectile = _projectile.Instantiate<Node2D>();
-		spawnedProjectile.Position = GlobalPosition;
-		spawnedProjectile.RotationDegrees = angleToMouse;
-		AddChild(spawnedProjectile);
+		spawnedProjectile.GlobalPosition = GlobalPosition;
+		//spawnedProjectile.RotationDegrees = Mathf.RadToDeg(angleToMouse);
+		//AddChild(spawnedProjectile);
+		GetTree().Root.AddChild(spawnedProjectile);
 		//passe direction to bullet
 		GD.Print("Fired");
 		

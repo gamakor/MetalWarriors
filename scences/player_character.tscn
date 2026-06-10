@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://0af5hxe16371" path="res://assets/sprites/Nitro/Nitro no bg.png" id="2_hlyld"]
 [ext_resource type="Texture2D" uid="uid://d4lvxwwolngqq" path="res://assets/sprites/Nitro/nitro_Jump.png" id="4_863sn"]
 [ext_resource type="Texture2D" uid="uid://cltohy13xb7bo" path="res://assets/sprites/Nitro/Nitro_Landing_.png" id="5_hmr4h"]
+[ext_resource type="Texture2D" uid="uid://dkfkxdy85jc3j" path="res://assets/sprites/Nitro/Nitro_Arm.png" id="6_f5dqt"]
 [ext_resource type="Script" uid="uid://b5u8wake8y1dq" path="res://scripts/Weapon.cs" id="6_ugl5i"]
 [ext_resource type="PackedScene" uid="uid://d1sbw8t0633ee" path="res://scences/projectile.tscn" id="7_av6hx"]
 
@@ -197,7 +198,25 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2dk2n"]
 size = Vector2(40, 50)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfxqv"]
+atlas = ExtResource("6_f5dqt")
+region = Rect2(120, 0, 38, 57)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_av6hx"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfxqv")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
 
 [node name="PlayerController" type="Node2D" unique_id=427040269 node_paths=PackedStringArray("_character")]
 script = ExtResource("1_bc7df")
@@ -205,7 +224,7 @@ _character = NodePath("CharacterBody2D")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=605688502 node_paths=PackedStringArray("PrimaryWeapon")]
 script = ExtResource("2_2dk2n")
-PrimaryWeapon = NodePath("../AnimatedSprite2D")
+PrimaryWeapon = NodePath("AnimatedSprite2D2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=2096412169]
 sprite_frames = SubResource("SpriteFrames_bc7df")
@@ -218,7 +237,8 @@ frame_progress = 1.0
 position = Vector2(1, 6)
 shape = SubResource("RectangleShape2D_2dk2n")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=928276180]
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=928276180]
 sprite_frames = SubResource("SpriteFrames_av6hx")
+animation = &"new_animation"
 script = ExtResource("6_ugl5i")
 _projectile = ExtResource("7_av6hx")
