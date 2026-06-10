@@ -6,4 +6,6 @@ public interface IPlayerCharacter
 {
     void Move(float direction);
     void Jump();
+    void SetMovementState(MovementState state);
+    void FirePrimary();
 }

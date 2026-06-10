@@ -28,7 +28,9 @@ public partial class PlayerController : Node2D
 		// Mouse in viewport coordinates.
 		if (@event is InputEventMouseButton eventMouseButton)
 		{
-			GD.Print("Mouse Click/Unclick at: ", eventMouseButton.Position);
+			//GD.Print("Mouse Click/Unclick at: ", eventMouseButton.Position);
+			_character.FirePrimary();
+			
 		}
 		else if (@event is InputEventMouseMotion eventMouseMotion)
 		{
@@ -38,4 +40,6 @@ public partial class PlayerController : Node2D
 		// Print the size of the viewport.
 		GD.Print("Viewport Resolution is: ", GetViewport().GetVisibleRect().Size);
 	}
+	
+	//get mouse angle
 }

@@ -9,7 +9,8 @@ size = Vector2(340, 93)
 [node name="Main" type="Node2D" unique_id=1556457377]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1026199765]
-position = Vector2(161.93391, 398.7438)
+position = Vector2(527, 533)
+scale = Vector2(3.9042463, 2.0731134)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1704185530]
 shape = SubResource("RectangleShape2D_i2nf4")

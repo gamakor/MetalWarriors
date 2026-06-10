@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0af5hxe16371"
-path="res://.godot/imported/Nitro no bg.png-6bbefa97d4545cb2c88104df7601ea60.ctex"
+uid="uid://cltohy13xb7bo"
+path="res://.godot/imported/Nitro_Landing_.png-443a8fecfba3c25b7938df2eda5d2805.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Nitro no bg.png"
-dest_files=["res://.godot/imported/Nitro no bg.png-6bbefa97d4545cb2c88104df7601ea60.ctex"]
+source_file="res://assets/sprites/Nitro/Nitro_Landing_.png"
+dest_files=["res://.godot/imported/Nitro_Landing_.png-443a8fecfba3c25b7938df2eda5d2805.ctex"]
 
 [params]
 
