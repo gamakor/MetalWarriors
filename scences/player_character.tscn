@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dkfkxdy85jc3j" path="res://assets/sprites/Nitro/Nitro_Arm.png" id="6_f5dqt"]
 [ext_resource type="Script" uid="uid://b5u8wake8y1dq" path="res://scripts/Weapon.cs" id="6_ugl5i"]
 [ext_resource type="PackedScene" uid="uid://d1sbw8t0633ee" path="res://scences/projectile.tscn" id="7_av6hx"]
+[ext_resource type="PackedScene" uid="uid://b425slpxvmby1" path="res://scences/Health.tscn" id="9_0iw53"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ohysr"]
 atlas = ExtResource("2_hlyld")
@@ -242,3 +243,5 @@ sprite_frames = SubResource("SpriteFrames_av6hx")
 animation = &"new_animation"
 script = ExtResource("6_ugl5i")
 _projectile = ExtResource("7_av6hx")
+
+[node name="Health" parent="." unique_id=1871660572 instance=ExtResource("9_0iw53")]
