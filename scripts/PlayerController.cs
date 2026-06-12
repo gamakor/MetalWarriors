@@ -26,11 +26,9 @@ public partial class PlayerController : Node2D
 	public override void _Input(InputEvent @event)
 	{
 		// Mouse in viewport coordinates.
-		if (@event is InputEventMouseButton eventMouseButton)
+		if (@event is InputEventMouseButton eventMouseButton && eventMouseButton.Pressed && eventMouseButton.ButtonIndex == (MouseButton)1)
 		{
-			//GD.Print("Mouse Click/Unclick at: ", eventMouseButton.Position);
 			_character.FirePrimary();
-			
 		}
 		else if (@event is InputEventMouseMotion eventMouseMotion)
 		{

@@ -19,23 +19,23 @@ public partial class Weapon : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		Vector2 mousePos  = GetGlobalMousePosition();
+		float angleToMouse = GlobalPosition.AngleToPoint(mousePos);
+		RotationDegrees = Mathf.RadToDeg(angleToMouse);
 	}
 	
 	public void Fire()
 	{
-		// 1. Get the mouse position in world space
-		Vector2 mousePos  = GetGlobalMousePosition();
-
-		// 2. Calculate the angle pointing toward the mouse
-		float angleToMouse = GlobalPosition.AngleToPoint(mousePos);
+		//Normalizing Direction that gets passed through to the projectile
+		Vector2 direction = (GetGlobalMousePosition() - GlobalPosition).Normalized();
+		
 		//spawn bullet
-		Node2D spawnedProjectile = _projectile.Instantiate<Node2D>();
+		Projectile spawnedProjectile = _projectile.Instantiate<Projectile>();
+		
 		spawnedProjectile.GlobalPosition = GlobalPosition;
-		//spawnedProjectile.RotationDegrees = Mathf.RadToDeg(angleToMouse);
-		//AddChild(spawnedProjectile);
+		spawnedProjectile.Direction = direction;
+		
 		GetTree().Root.AddChild(spawnedProjectile);
-		//passe direction to bullet
-		GD.Print("Fired");
 		
 	}
 	

@@ -18,6 +18,6 @@ public partial class Projectile : Node2D
 	public override void _Process(double delta)
 	{
 		Position += _direction * _speed * (float)delta  ;
-	//	GD.Print("Bullet is at: ", GlobalPosition);
+		GD.Print("Bullet is at: ", GlobalPosition);
 	}
 }
