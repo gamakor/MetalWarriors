@@ -244,4 +244,4 @@ animation = &"new_animation"
 script = ExtResource("6_ugl5i")
 _projectile = ExtResource("7_av6hx")
 
-[node name="Health" parent="." unique_id=1871660572 instance=ExtResource("9_0iw53")]
+[node name="Health" parent="CharacterBody2D" unique_id=1871660572 instance=ExtResource("9_0iw53")]

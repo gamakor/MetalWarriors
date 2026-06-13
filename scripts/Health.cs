@@ -1,14 +1,14 @@
 using Godot;
 using System;
 
-public partial class Healh : Node, IDamagable
+public partial class Health : Node, IDamagable
 {
 	// Called when the node enters the scene tree for the first time.
 	//make a load data section for enemy data/player data
 	
-	int _health = 100;
+	int _currentHealth = 100;
 
-	public int Health => _health;
+	public int CurrentHealth => _currentHealth;
 
 	int _maxHealth = 100;
 	
@@ -24,20 +24,20 @@ public partial class Healh : Node, IDamagable
 
 	public int TakeDamage(int damage)
 	{
-		_health = GetDamage(damage);
-		GD.Print("Health is now: ", _health);
-		return Mathf.Max(_health, 0);
+		_currentHealth = GetDamage(damage);
+		GD.Print("Health is now: ", _currentHealth);
+		return Mathf.Max(_currentHealth, 0);
 		
 	}
 
 	public int GetDamage(int damage)
 	{
-		int damagePreview = _health - damage;
+		int damagePreview = _currentHealth - damage;
 		return damagePreview;
 	}
 
 	public int GetHealthPercentage()
 	{
-		return _health / _maxHealth;
+		return _currentHealth / _maxHealth;
 	}
 }

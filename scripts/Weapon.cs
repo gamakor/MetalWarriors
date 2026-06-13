@@ -11,9 +11,14 @@ public partial class Weapon : Node2D
 	float _fireRate = 1.0f;
 	[Export]
 	PackedScene _projectile;
+
+	[Export] 
+	private WeaponData _weaponData;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		//make a way to know if htere is a weapondeatea ready. 
+		LoadData();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -47,6 +52,10 @@ public partial class Weapon : Node2D
 
 	public void LoadData()
 	{
-		
+		//add a null check here for weapon data
+		_damage = _weaponData.Damage;
+		_maxAmmo = _weaponData.MaxAmmo;
+		_ammo = _maxAmmo;
+		_fireRate = _weaponData.FireRate;
 	}
 }
