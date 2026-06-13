@@ -24,8 +24,7 @@ public partial class Projectile : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		Position += _direction * _speed * (float)delta  ;
-		GD.Print("Bullet is at: ", GlobalPosition);
+		Position += _direction * _speed * (float)delta;
 	}
 	
 	private void OnBodyEntered(Node2D body)

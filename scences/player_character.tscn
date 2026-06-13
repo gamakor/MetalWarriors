@@ -7,8 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://cltohy13xb7bo" path="res://assets/sprites/Nitro/Nitro_Landing_.png" id="5_hmr4h"]
 [ext_resource type="Texture2D" uid="uid://dkfkxdy85jc3j" path="res://assets/sprites/Nitro/Nitro_Arm.png" id="6_f5dqt"]
 [ext_resource type="Script" uid="uid://b5u8wake8y1dq" path="res://scripts/Weapon.cs" id="6_ugl5i"]
+[ext_resource type="Texture2D" uid="uid://b2r8gpp2hso0x" path="res://assets/sprites/Nitro/Nitro_Arm_Shooting.png" id="7_1rbpk"]
 [ext_resource type="PackedScene" uid="uid://d1sbw8t0633ee" path="res://scences/projectile.tscn" id="7_av6hx"]
 [ext_resource type="PackedScene" uid="uid://b425slpxvmby1" path="res://scences/Health.tscn" id="9_0iw53"]
+[ext_resource type="Resource" uid="uid://t8ip04xrpfh" path="res://resources/weapons/BaseGun.tres" id="10_xf0mt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ohysr"]
 atlas = ExtResource("2_hlyld")
@@ -203,19 +205,29 @@ size = Vector2(40, 50)
 atlas = ExtResource("6_f5dqt")
 region = Rect2(120, 0, 38, 57)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdusd"]
+atlas = ExtResource("7_1rbpk")
+region = Rect2(128, 0, 39, 49)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_av6hx"]
 animations = [{
-"frames": [],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kfxqv")
 }],
 "loop": true,
-"name": &"new_animation",
+"name": &"Default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdusd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdusd")
+}],
+"loop": false,
+"name": &"Firing",
 "speed": 5.0
 }]
 
@@ -238,10 +250,13 @@ frame_progress = 1.0
 position = Vector2(1, 6)
 shape = SubResource("RectangleShape2D_2dk2n")
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=928276180]
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=928276180 node_paths=PackedStringArray("_animatedSprite")]
 sprite_frames = SubResource("SpriteFrames_av6hx")
-animation = &"new_animation"
+animation = &"Firing"
+autoplay = "Default"
 script = ExtResource("6_ugl5i")
 _projectile = ExtResource("7_av6hx")
+_weaponData = ExtResource("10_xf0mt")
+_animatedSprite = NodePath(".")
 
 [node name="Health" parent="CharacterBody2D" unique_id=1871660572 instance=ExtResource("9_0iw53")]

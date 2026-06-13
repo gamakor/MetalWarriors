@@ -1,21 +1,64 @@
 [gd_scene format=3 uid="uid://d1sbw8t0633ee"]
 
 [ext_resource type="Script" uid="uid://41gkxsybr1ya" path="res://Projectile.cs" id="1_itgsr"]
-[ext_resource type="Texture2D" uid="uid://dk42y7ah3kklm" path="res://icon.svg" id="2_wddss"]
+[ext_resource type="Texture2D" uid="uid://dxbal6l62revv" path="res://assets/sprites/Nitro/Nitro_Projectile.png" id="2_itgsr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_itgsr"]
 size = Vector2(59, 35)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wddss"]
+atlas = ExtResource("2_itgsr")
+region = Rect2(0, 0, 14, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bq6db"]
+atlas = ExtResource("2_itgsr")
+region = Rect2(14, 0, 14, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24isx"]
+atlas = ExtResource("2_itgsr")
+region = Rect2(28, 0, 14, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_paxso"]
+atlas = ExtResource("2_itgsr")
+region = Rect2(0, 0, 14, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rxf0t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wddss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bq6db")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24isx")
+}],
+"loop": true,
+"name": &"collision",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_paxso")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Projectile" type="Node2D" unique_id=599760669]
 script = ExtResource("1_itgsr")
 _direction = Vector2(1, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=920908384]
-scale = Vector2(0.48000002, 0.32)
-texture = ExtResource("2_wddss")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1833894582]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=622290738]
 position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_itgsr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1357208176]
+scale = Vector2(0.48000002, 0.32)
+sprite_frames = SubResource("SpriteFrames_rxf0t")
+autoplay = "default"
+frame_progress = 0.9597387

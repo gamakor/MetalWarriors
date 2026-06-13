@@ -1,24 +1,28 @@
 using Godot;
 using System;
 //add state machine if there is going to be reloading
-public partial class Weapon : Node2D
+public partial class Weapon : AnimatedSprite2D
 {
 	//public weapon data
-	
-	int _damage = 10;
-	int _ammo = 10;
-	int _maxAmmo = 10;
-	float _fireRate = 1.0f;
+
+	private int _damage = 10;
+	private int _ammo = 10;
+	private int _maxAmmo = 10;
+	private float _fireRate = 1.0f;
 	[Export]
 	PackedScene _projectile;
 
 	[Export] 
 	private WeaponData _weaponData;
+	[Export]
+	private AnimatedSprite2D _animatedSprite;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		//make a way to know if htere is a weapondeatea ready. 
-		LoadData();
+		LoadData(_weaponData);
+		_animatedSprite.AnimationFinished += OnAnimationFinished;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,6 +43,10 @@ public partial class Weapon : Node2D
 		
 		spawnedProjectile.GlobalPosition = GlobalPosition;
 		spawnedProjectile.Direction = direction;
+		//TODO: Add owner to projectile
+		//Animation for arm firing
+		_animatedSprite.Play("Firing");
+		
 		
 		GetTree().Root.AddChild(spawnedProjectile);
 		
@@ -50,12 +58,26 @@ public partial class Weapon : Node2D
 		_ammo = _maxAmmo;	
 	}
 
-	public void LoadData()
+	private void LoadData(WeaponData data)
 	{
+		if (data == null)
+		{
+			GD.Print("Weapon Data is missing");
+			return;
+		}
+
 		//add a null check here for weapon data
 		_damage = _weaponData.Damage;
 		_maxAmmo = _weaponData.MaxAmmo;
 		_ammo = _maxAmmo;
 		_fireRate = _weaponData.FireRate;
+	}
+
+	void OnAnimationFinished()
+	{
+		if (_animatedSprite.Animation == "Firing")
+		{
+			_animatedSprite.Play("Default");
+		}
 	}
 }
