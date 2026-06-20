@@ -32,7 +32,7 @@ public partial class PlayerController : Node2D
 		}
 
 		// Print the size of the viewport.
-		GD.Print("Viewport Resolution is: ", GetViewport().GetVisibleRect().Size);
+		//GD.Print("Viewport Resolution is: ", GetViewport().GetVisibleRect().Size);
 	}
 	
 	//get mouse angle

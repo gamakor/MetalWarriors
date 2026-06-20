@@ -9,7 +9,7 @@ public partial class Projectile : Node2D
 	private Vector2 _direction;
 	public Vector2 Direction { get => _direction; set => _direction = value; }
 	//Add a var for owner so that we can know who fired the bullet and not hurt itself
-	
+	public Node2D ProjectileOwner { get; set; }
 	private Area2D _area;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -29,6 +29,9 @@ public partial class Projectile : Node2D
 	
 	private void OnBodyEntered(Node2D body)
 	{
+		//if other node is is projectile owner then dont take damage
+		if (body == ProjectileOwner) return;
 		body.GetNode<Health>("Health").TakeDamage(10);
+		QueueFree();
 	}
 }

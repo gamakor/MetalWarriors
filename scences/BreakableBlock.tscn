@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://celnh1xoh7but"]
+
+[ext_resource type="Texture2D" uid="uid://dk42y7ah3kklm" path="res://icon.svg" id="1_bulqo"]
+[ext_resource type="PackedScene" uid="uid://b425slpxvmby1" path="res://scences/Health.tscn" id="1_tp4rk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bulqo"]
+size = Vector2(127, 126)
+
+[node name="BreakableBlock" type="StaticBody2D" unique_id=1169873562]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=624913117]
+position = Vector2(3.5, -8)
+shape = SubResource("RectangleShape2D_bulqo")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2125887546]
+texture = ExtResource("1_bulqo")
+
+[node name="Health" parent="." unique_id=1871660572 instance=ExtResource("1_tp4rk")]

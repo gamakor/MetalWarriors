@@ -10,11 +10,12 @@ public partial class Health : Node, IDamagable
 
 	public int CurrentHealth => _currentHealth;
 
+	[Export]
 	int _maxHealth = 100;
 	
 	public override void _Ready()
 	{
-		TakeDamage(50);
+		 _currentHealth = _maxHealth;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,10 +25,20 @@ public partial class Health : Node, IDamagable
 
 	public int TakeDamage(int damage)
 	{
+		//take damage preview and return the new health
 		_currentHealth = GetDamage(damage);
 		GD.Print("Health is now: ", _currentHealth);
+		//check if dead
+		if (_currentHealth <= 0)
+			Dead();
+		
 		return Mathf.Max(_currentHealth, 0);
 		
+	}
+
+	private void Dead()
+	{
+		GetParent().QueueFree();
 	}
 
 	public int GetDamage(int damage)
