@@ -141,6 +141,16 @@ public partial class PlayerCharacter :CharacterBody2D , IPlayerCharacter
 		PrimaryWeapon.Fire();
 	}
 
+	public void EnterPawn()
+	{
+		throw new NotImplementedException();
+	}
+
+	public void ExitPawn()
+	{
+		throw new NotImplementedException();
+	}
+
 	private void OnAnimationFinished()
 	{
 		if (_animatedSprite.Animation == "land")

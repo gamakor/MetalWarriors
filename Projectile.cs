@@ -32,6 +32,7 @@ public partial class Projectile : Node2D
 		//if other node is is projectile owner then dont take damage
 		if (body == ProjectileOwner) return;
 		body.GetNode<Health>("Health").TakeDamage(10);
+		//TODO: Add animation for projectile hit
 		QueueFree();
 	}
 }

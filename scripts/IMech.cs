@@ -8,4 +8,6 @@ public interface IPlayerCharacter
     void Jump();
     void SetMovementState(MovementState state);
     void FirePrimary();
+    void EnterPawn();
+    void ExitPawn();
 }
