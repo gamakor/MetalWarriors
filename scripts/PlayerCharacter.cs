@@ -9,6 +9,11 @@ public partial class PlayerCharacter :CharacterBody2D , IPlayerCharacter
 	public const float Speed = 300.0f;
 	public const float JumpVelocity = -400.0f;
 	public float Direction = 0;
+	
+	private IPlayerCharacter _nextPawn;
+	[Export] private PackedScene _packedPilotMount;
+	private PlayerController _playerController;
+	
 	[Export]
 	public Weapon PrimaryWeapon = null;
 	
@@ -93,6 +98,8 @@ public partial class PlayerCharacter :CharacterBody2D , IPlayerCharacter
 		MoveAndSlide();
 		
 		Velocity = velocity;
+		
+		
 	}
 
 	public void Move(float direction)
@@ -136,6 +143,11 @@ public partial class PlayerCharacter :CharacterBody2D , IPlayerCharacter
 		}
 	}
 
+	public void SetPlayerController(PlayerController playerController)
+	{
+		_playerController = playerController;
+	}
+
 	public void FirePrimary()
 	{
 		PrimaryWeapon.Fire();
@@ -143,12 +155,34 @@ public partial class PlayerCharacter :CharacterBody2D , IPlayerCharacter
 
 	public void EnterPawn()
 	{
-		throw new NotImplementedException();
+		GD.Print("Entering Pawn");
 	}
 
 	public void ExitPawn()
 	{
-		throw new NotImplementedException();
+		GD.Print("Exiting Pawn");
+	}
+
+	public void ToggleMount()
+	{
+		//Spawns pilot mount if no nextPawn is null
+		if (_nextPawn == null)
+		{
+			GD.Print("spawning pilot mount");
+			PlayerCharacter spawnedPawn = _packedPilotMount.Instantiate<PlayerCharacter>();
+			spawnedPawn.SetGlobalPosition(GlobalPosition);
+			GetTree().Root.AddChild(spawnedPawn);
+			_playerController.SetPawn(spawnedPawn);
+			
+		}
+		else
+		{
+			_playerController.SetPawn(_nextPawn);
+		}
+		//Enters _nextPawn
+		
+		
+		
 	}
 
 	private void OnAnimationFinished()
@@ -158,6 +192,16 @@ public partial class PlayerCharacter :CharacterBody2D , IPlayerCharacter
 			SetMovementState(MovementState.Idle);
 		}
 	}
-	
-	//Shoot method here
+
+	public void OnEject()
+	{
+		GD.Print("Ejecting");
+		
+		//play eject aniamtion 
+	}
+
+	public void SetGlobalPosition(Vector2 position)
+	{
+		GlobalPosition = position;
+	}
 }

@@ -10,4 +10,7 @@ public interface IPlayerCharacter
     void FirePrimary();
     void EnterPawn();
     void ExitPawn();
+    void ToggleMount();
+    void SetGlobalPosition(Vector2 position);
+    void SetPlayerController(PlayerController playerController);
 }

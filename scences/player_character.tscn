@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cspyyagnewk12" path="res://scripts/PlayerController.cs" id="1_bc7df"]
 [ext_resource type="Script" uid="uid://dfsu55ng2h22v" path="res://scripts/PlayerCharacter.cs" id="2_2dk2n"]
 [ext_resource type="Texture2D" uid="uid://0af5hxe16371" path="res://assets/sprites/Nitro/Nitro no bg.png" id="2_hlyld"]
+[ext_resource type="PackedScene" uid="uid://ctf4eptm5u414" path="res://scences/pilot.tscn" id="2_xf0mt"]
 [ext_resource type="Texture2D" uid="uid://d4lvxwwolngqq" path="res://assets/sprites/Nitro/nitro_Jump.png" id="4_863sn"]
 [ext_resource type="Texture2D" uid="uid://cltohy13xb7bo" path="res://assets/sprites/Nitro/Nitro_Landing_.png" id="5_hmr4h"]
 [ext_resource type="Texture2D" uid="uid://dkfkxdy85jc3j" path="res://assets/sprites/Nitro/Nitro_Arm.png" id="6_f5dqt"]
@@ -237,6 +238,7 @@ _character = NodePath("CharacterBody2D")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=605688502 node_paths=PackedStringArray("PrimaryWeapon")]
 script = ExtResource("2_2dk2n")
+_PackedPilotMount = ExtResource("2_xf0mt")
 PrimaryWeapon = NodePath("AnimatedSprite2D2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=2096412169]

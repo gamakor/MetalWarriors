@@ -44,7 +44,6 @@ public partial class Weapon : AnimatedSprite2D
 		spawnedProjectile.GlobalPosition = GlobalPosition;
 		spawnedProjectile.Direction = direction;
 		spawnedProjectile.ProjectileOwner = GetParent<PlayerCharacter>();
-		//TODO: Add owner to projectile
 		//Animation for arm firing
 		_animatedSprite.Play("Firing");
 		

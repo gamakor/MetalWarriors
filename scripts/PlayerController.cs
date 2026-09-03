@@ -10,6 +10,7 @@ public partial class PlayerController : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		_character.SetPlayerController(this);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,7 +21,13 @@ public partial class PlayerController : Node2D
 		if (Input.IsActionJustPressed("jump"))
 		{
 			_character.Jump();
-			GD.Print("Jumping");
+			
+		}
+		
+		if (Input.IsActionJustPressed("mount"))
+		{
+			GD.Print("Mount");
+			_character.ToggleMount();
 		}
 	}
 	public override void _Input(InputEvent @event)
