@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://ctf4eptm5u414"]
+
+[ext_resource type="Texture2D" uid="uid://oicxnfbmtfm1" path="res://assets/sprites/Nitro/Nitro_no_bg.png" id="1_al6pj"]
+[ext_resource type="Script" uid="uid://dfsu55ng2h22v" path="res://scripts/PlayerCharacter.cs" id="1_uniys"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uniys"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31ovj"]
+atlas = ExtResource("1_al6pj")
+region = Rect2(49, 0, 45, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hofxr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31ovj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Pilot" type="CharacterBody2D" unique_id=444512787]
+script = ExtResource("1_uniys")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=384886193]
+shape = SubResource("RectangleShape2D_uniys")
+debug_color = Color(0.870262, 0.00050441024, 0.8508468, 0.41960785)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=576043411]
+self_modulate = Color(0, 1, 1, 1)
+sprite_frames = SubResource("SpriteFrames_hofxr")
