@@ -232,6 +232,9 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xf0mt"]
+size = Vector2(114, 84)
+
 [node name="PlayerController" type="Node2D" unique_id=427040269 node_paths=PackedStringArray("_character")]
 script = ExtResource("1_bc7df")
 _character = NodePath("CharacterBody2D")
@@ -262,3 +265,10 @@ _weaponData = ExtResource("10_xf0mt")
 _animatedSprite = NodePath(".")
 
 [node name="Health" parent="CharacterBody2D" unique_id=1871660572 instance=ExtResource("9_0iw53")]
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D" unique_id=1988946880]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D" unique_id=2045762440]
+position = Vector2(4, 2)
+shape = SubResource("RectangleShape2D_xf0mt")
+debug_color = Color(0.74911135, 0.2036303, 0.99999994, 0.41960785)

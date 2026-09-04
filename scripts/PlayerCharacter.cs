@@ -13,6 +13,8 @@ public partial class PlayerCharacter :CharacterBody2D , IPlayerCharacter
 	private IPlayerCharacter _nextPawn;
 	[Export] private PackedScene _packedPilotMount;
 	private PlayerController _playerController;
+	private Area2D _area;
+
 	
 	[Export]
 	public Weapon PrimaryWeapon = null;
@@ -29,6 +31,12 @@ public partial class PlayerCharacter :CharacterBody2D , IPlayerCharacter
 		_animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		
 		_animatedSprite.AnimationFinished += OnAnimationFinished;
+		
+		_area = GetNode<Area2D>("Area2D");
+		if (_area != null)
+		{
+			_area.BodyEntered += OnBodyEntered;
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -102,6 +110,7 @@ public partial class PlayerCharacter :CharacterBody2D , IPlayerCharacter
 		
 	}
 
+	#region Movement Functions
 	public void Move(float direction)
 	{
 		Direction = direction;
@@ -142,17 +151,19 @@ public partial class PlayerCharacter :CharacterBody2D , IPlayerCharacter
 				break;
 		}
 	}
-
-	public void SetPlayerController(PlayerController playerController)
-	{
-		_playerController = playerController;
-	}
+	#endregion
 
 	public void FirePrimary()
 	{
 		PrimaryWeapon.Fire();
 	}
-
+	
+	#region Pawn System
+	public void SetPlayerController(PlayerController playerController)
+	{
+		_playerController = playerController;
+	}
+	
 	public void EnterPawn()
 	{
 		GD.Print("Entering Pawn");
@@ -173,17 +184,16 @@ public partial class PlayerCharacter :CharacterBody2D , IPlayerCharacter
 			spawnedPawn.SetGlobalPosition(GlobalPosition);
 			GetTree().Root.AddChild(spawnedPawn);
 			_playerController.SetPawn(spawnedPawn);
+			spawnedPawn.SetPlayerController(_playerController);
 			
 		}
 		else
 		{
 			_playerController.SetPawn(_nextPawn);
 		}
-		//Enters _nextPawn
-		
-		
 		
 	}
+	#endregion 
 
 	private void OnAnimationFinished()
 	{
@@ -203,5 +213,14 @@ public partial class PlayerCharacter :CharacterBody2D , IPlayerCharacter
 	public void SetGlobalPosition(Vector2 position)
 	{
 		GlobalPosition = position;
+	}
+
+	private void OnBodyEntered(Node2D body)
+	{
+		if (body is IPlayerCharacter && body != this)
+		{
+			_nextPawn = body as IPlayerCharacter;
+			//GD.Print("Player Character Entered");
+		}
 	}
 }

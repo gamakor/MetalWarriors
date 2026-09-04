@@ -20,6 +20,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_31ovj"]
+size = Vector2(114, 84)
+
 [node name="Pilot" type="CharacterBody2D" unique_id=444512787]
 script = ExtResource("1_uniys")
 
@@ -30,3 +33,10 @@ debug_color = Color(0.870262, 0.00050441024, 0.8508468, 0.41960785)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=576043411]
 self_modulate = Color(0, 1, 1, 1)
 sprite_frames = SubResource("SpriteFrames_hofxr")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=149292827]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=564204755]
+position = Vector2(4, 2)
+shape = SubResource("RectangleShape2D_31ovj")
+debug_color = Color(0.74911135, 0.2036303, 0.99999994, 0.41960785)
