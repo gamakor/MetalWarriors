@@ -238,7 +238,7 @@ _character = NodePath("CharacterBody2D")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=605688502 node_paths=PackedStringArray("PrimaryWeapon")]
 script = ExtResource("2_2dk2n")
-_PackedPilotMount = ExtResource("2_xf0mt")
+_packedPilotMount = ExtResource("2_xf0mt")
 PrimaryWeapon = NodePath("AnimatedSprite2D2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=2096412169]

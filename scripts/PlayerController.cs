@@ -6,7 +6,14 @@ public partial class PlayerController : Node2D
 {
 	[Export]
 	PlayerCharacter _character;
+
+	public IPlayerCharacter pawn
+	{
+		get => _character as IPlayerCharacter;
+		set => _character = value as PlayerCharacter;
+	}
 	
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -42,11 +49,11 @@ public partial class PlayerController : Node2D
 		//GD.Print("Viewport Resolution is: ", GetViewport().GetVisibleRect().Size);
 	}
 
-	public void SetPawn(PlayerCharacter character)
+	public void SetPawn(IPlayerCharacter character)
 	{
-		_character.ExitPawn();
-		_character = character;
-		_character.EnterPawn();
+		pawn.ExitPawn();
+		pawn = character;
+		pawn.EnterPawn();
 	}
 
 	//get mouse angle
