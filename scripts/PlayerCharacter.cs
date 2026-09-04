@@ -10,9 +10,9 @@ public partial class PlayerCharacter :CharacterBody2D , IPlayerCharacter
 	public const float JumpVelocity = -400.0f;
 	public float Direction = 0;
 	
-	private IPlayerCharacter _nextPawn;
+	protected IPlayerCharacter NextPawn;
 	[Export] private PackedScene _packedPilotMount;
-	private PlayerController _playerController;
+	protected PlayerController PlayerController;
 	private Area2D _area;
 
 	
@@ -36,6 +36,7 @@ public partial class PlayerCharacter :CharacterBody2D , IPlayerCharacter
 		if (_area != null)
 		{
 			_area.BodyEntered += OnBodyEntered;
+			_area.BodyExited += OnBodyExited;
 		}
 	}
 
@@ -161,35 +162,35 @@ public partial class PlayerCharacter :CharacterBody2D , IPlayerCharacter
 	#region Pawn System
 	public void SetPlayerController(PlayerController playerController)
 	{
-		_playerController = playerController;
+		PlayerController = playerController;
 	}
 	
-	public void EnterPawn()
+	public virtual void EnterPawn()
 	{
 		GD.Print("Entering Pawn");
 	}
 
-	public void ExitPawn()
+	public virtual void ExitPawn()
 	{
 		GD.Print("Exiting Pawn");
 	}
 
-	public void ToggleMount()
+	public virtual void ToggleMount()
 	{
 		//Spawns pilot mount if no nextPawn is null
-		if (_nextPawn == null)
+		if (NextPawn == null)
 		{
 			GD.Print("spawning pilot mount");
 			PlayerCharacter spawnedPawn = _packedPilotMount.Instantiate<PlayerCharacter>();
 			spawnedPawn.SetGlobalPosition(GlobalPosition);
 			GetTree().Root.AddChild(spawnedPawn);
-			_playerController.SetPawn(spawnedPawn);
-			spawnedPawn.SetPlayerController(_playerController);
+			PlayerController.SetPawn(spawnedPawn);
+			spawnedPawn.SetPlayerController(PlayerController);
 			
 		}
 		else
 		{
-			_playerController.SetPawn(_nextPawn);
+			PlayerController.SetPawn(NextPawn);
 		}
 		
 	}
@@ -219,8 +220,16 @@ public partial class PlayerCharacter :CharacterBody2D , IPlayerCharacter
 	{
 		if (body is IPlayerCharacter && body != this)
 		{
-			_nextPawn = body as IPlayerCharacter;
+			NextPawn = body as IPlayerCharacter;
 			//GD.Print("Player Character Entered");
+		}
+	}
+	
+	private void OnBodyExited(Node2D body)
+	{
+		if (body is IPlayerCharacter && body != this)
+		{
+			NextPawn = null;
 		}
 	}
 }
